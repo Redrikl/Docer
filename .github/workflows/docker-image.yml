@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-test-deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres
@@ -25,10 +25,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: install PostgreSQL
-        run: sudo apt-get update -y
-             sudo apt-get install -y 
-             postgresql-client
       - name: Wait for Postgres
         run: |
           until pg_isready -h localhost -p 5432 -U kubsu; do
